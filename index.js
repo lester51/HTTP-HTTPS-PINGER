@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/Docs', function(req, res) {
-    res.sendFile(path.resolve('pages','docu.html'))
+    res.sendFile(path.resolve('docu.html'))
 });
 
 app.get('/addmonitor', function(req, res) {
