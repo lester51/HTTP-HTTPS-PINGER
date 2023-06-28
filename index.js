@@ -62,3 +62,5 @@ app.get('/addmonitor', function(req, res) {
 app.listen(port, () => {
     console.log(`Replit Server Monitor Service API is listening on port ${port}`);
 })
+
+module.exports = app;
