@@ -23,7 +23,7 @@ let monitor = async () => {
 }
 
 let servers = JSON.parse(fs.readFileSync(path.resolve("servers.json"),"utf8"))
-let exeption = []
+let exeption = ["ReplitServerMonitoringService","hackmesenpai1"]
 
 let jsonStr = ""
 cron.schedule('*/5 * * * *', async () => {
@@ -54,7 +54,7 @@ app.get('/addmonitor', function(req, res) {
     else {
         if (url.endsWith("/")) url = url.substring(0,url.length - 1);
         if (!(url.startsWith("http://")||url.startsWith("https://"))) url = "https://"+url;
-			  if (Boolean(url.match(/hackmesenpai1/gi))) {
+			  if (Boolean(url.match(http-https-pinger.vercel.app/gi))) {
 					res.send({error: "Url provided not allowed!"});
 					res.status(405)
 				}else{
