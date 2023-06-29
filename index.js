@@ -52,6 +52,10 @@ app.get('/Docs', function(req, res) {
     res.sendFile(path.resolve('docu.html'))
 });
 
+app.get('/showServers', function(req, res) {
+    res.send(svList)
+});
+
 app.get('/addmonitor', function(req, res) {
     let url = req.query.url;
     if (!url) res.send({error: "Invalid Request! url parameter must be filled!"});
