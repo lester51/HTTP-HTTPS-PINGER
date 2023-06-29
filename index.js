@@ -23,7 +23,7 @@ let monitor = async () => {
 }
 
 let servers = JSON.parse(fs.readFileSync(path.resolve("servers.json"),"utf8"))
-let exeption = ["ReplitServerMonitoringService","hackmesenpai1"]
+let exeption = []
 
 let jsonStr = ""
 cron.schedule('*/5 * * * *', async () => {
