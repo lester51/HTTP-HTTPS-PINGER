@@ -2,15 +2,30 @@ const fs = require('fs');
 const axios = require('axios');
 const express = require('express');
 const cron = require('node-cron');
-const {monitor} = require('./monitor.js');
+//const {monitor} = require('./monitor.js');
 const app = express();
 const port = 3000;
+
+let monitor = async () => {
+    serversToMonitor = JSON.parse(fs.readFileSync(path.resolve("servers.json"),"utf8"))
+    const finalData = await Promise.all(serversToMonitor.map(async urls=>{
+	    let data = await axios.get(urls).then(data=>{
+	        replitName = urls.split("/")[2].split(".")[0];
+		    return {replitName: replitName, replitUrl: urls, status: data.status}
+	    }).catch(e=>{
+	        replitName = urls.split("/")[2].split(".")[0];
+		    return {replitName: replitName, replitUrl: urls, status: e.response.status}
+	    })
+	    return data
+	}))
+    return finalData
+}
 
 let servers = JSON.parse(fs.readFileSync(path.resolve("servers.json"),"utf8"))
 let exeption = ["ReplitServerMonitoringService","hackmesenpai1"]
 
 let jsonStr = ""
-cron.schedule('*/5 * * * * *', async () => {
+cron.schedule('*/5 * * * *', async () => {
 	   jsonData = await monitor()
 	   jsonStr = JSON.stringify(jsonData)
 });
