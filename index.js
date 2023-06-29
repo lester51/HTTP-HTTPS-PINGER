@@ -7,11 +7,11 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-//let svList = []
+let svList = []
 
 let monitor = async () => {
-    serversToMonitor = JSON.parse(fs.readFileSync(path.resolve("servers.json"),"utf8"))
-    //serversToMonitor = svList
+    //serversToMonitor = JSON.parse(fs.readFileSync(path.resolve("servers.json"),"utf8"))
+    serversToMonitor = svList
     const finalData = await Promise.all(serversToMonitor.map(async urls=>{
 	    let data = await axios.get(urls).then(data=>{
 	        replitName = urls.split("/")[2].split(".")[0];
@@ -25,8 +25,8 @@ let monitor = async () => {
     return finalData
 }
 
-let servers = JSON.parse(fs.readFileSync(path.resolve("servers.json"),"utf8"))
-//let servers = svList
+//let servers = JSON.parse(fs.readFileSync(path.resolve("servers.json"),"utf8"))
+let servers = svList
 let exeption = ["ReplitServerMonitoringService","hackmesenpai1"]
 
 let jsonStr = ""
@@ -36,7 +36,7 @@ cron.schedule('*/5 * * * *', async () => {
 });
 
 app.get('/', (req, res) => {
-	   //if(jsonStr.length != 0){
+	   /*if(jsonStr.length != 0){
     let data = JSON.parse(jsonStr)
     let htmlTable = '<!DOCTYPE html><html><head><title>Servers List</title><meta charset="UTF-8"/><link rel="stylesheet" href=""/><style>th,tr{border: 1px solid #C2C2C2;padding: 8px;}div{margin:4px; padding:6px 0 0 0; text-align:center; flex-basis: 532px;}table{display:inline-block;border:0;margin:0;border-collapse: collapse; background-color:white; background: rgba(255,255,255,0.8);}</style></head><body><div><table><thead><tr><th style="text-align:center;background-color:#2A69FB;color:#FFFFFF;">STATUS CODE</th><th style="text-align:center;background-color:#2A69FB;color:#FFFFFF;">REPLIT SERVER NAME</th></tr></thead><tbody>';
     data.forEach(function(item) {
@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
     htmlTable += '</tbody></table></div></body></html>';
     res.send(htmlTable);
     }
-    //else res.redirect("https://http-https-pinger.vercel.app/Docs")
+    else*/ res.redirect("https://http-https-pinger.vercel.app/Docs")
 })
 
 app.get('/Docs', function(req, res) {
