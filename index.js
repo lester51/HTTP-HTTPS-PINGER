@@ -6,7 +6,7 @@ const {monitor} = require('./monitor.js');
 const app = express();
 const port = 3000;
 
-let servers = JSON.parse(fs.readFileSync("./servers.json","utf8"))
+let servers = JSON.parse(fs.readFileSync(path.resolve("servers.json"),"utf8"))
 let exeption = ["ReplitServerMonitoringService","hackmesenpai1"]
 
 let jsonStr = ""
@@ -46,7 +46,7 @@ app.get('/addmonitor', function(req, res) {
             if (url.endsWith("repl.co")||url.endsWith("repl.co/")){
                 axios.get(url).then(resp=>{
                     servers.push(url)
-                    fs.writeFileSync("./servers.json",JSON.stringify(servers))
+                    fs.writeFileSync(path.resolve("servers.json"),JSON.stringify(servers))
                     res.send({status:200,statusText:"Success! Your replit server url has been added to our monitoring service."})
                 }).catch(e=>{ 
 										 res.send({message: "Request rejected! Invalid replit server url."})
