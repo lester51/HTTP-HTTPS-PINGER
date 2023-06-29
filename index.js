@@ -58,7 +58,7 @@ app.get('/addmonitor', function(req, res) {
     else {
         if (url.endsWith("/")) url = url.substring(0,url.length - 1);
         if (!(url.startsWith("http://")||url.startsWith("https://"))) url = "https://"+url;
-			  if (Boolean(url.match(http-https-pinger.vercel.app/gi))) {
+			  if (Boolean(url.match(/(http\-https\-pinger\.vercel\.app)/g))) {
 					res.send({error: "Url provided not allowed!"});
 					res.status(405)
 				}else{
