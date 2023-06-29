@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
     htmlTable += '</tbody></table></div></body></html>';
     res.send(htmlTable);
     }
-    else res.redirect("https://ReplitServerMonitoringService.hackmesenpai1.repl.co/Docs")
+    else res.redirect("https://http-https-pinger.vercel.app/Docs")
 })
 
 app.get('/Docs', function(req, res) {
